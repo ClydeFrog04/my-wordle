@@ -1,0 +1,19 @@
+
+.wordle{
+    display: flex;
+
+    .board{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: .25rem;
+    }
+
+    .row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .25rem;
+    }
+}

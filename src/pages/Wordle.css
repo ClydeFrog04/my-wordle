@@ -1,0 +1,18 @@
+.wordle {
+  display: flex;
+}
+.wordle .board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+.wordle .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/*# sourceMappingURL=Wordle.css.map */
