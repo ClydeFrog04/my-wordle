@@ -32,7 +32,6 @@ function App() {
                         path={"/"}
                         element={
                             <div>
-                                getting definition for word: four!
                                 <World/>
                             </div>
                         }

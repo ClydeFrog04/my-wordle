@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import words from "../res/fiveLetterWords.json";
+import words from "../res/fiveLetterWordsNoSpecial.json";
+import wordle from "../pages/Wordle.tsx";
 
 export const useDictionary = () => {
     const TAG = "[useDictionary.ts]";
@@ -18,8 +19,13 @@ export const useDictionary = () => {
         return wordsList[num];
     }
 
+    const doesWordExist =  (word: string) => {
+        return wordsList.includes(word);
+    }
+
     return {
-        getWord
+        getWord,
+        doesWordExist
     }
 }
 

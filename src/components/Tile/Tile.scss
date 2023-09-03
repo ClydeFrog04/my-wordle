@@ -5,9 +5,33 @@
     height: 50px;
     padding: 4px;
     border-radius: 4px;
-    border: 2px solid grey;
+    border: 2px solid #484848;
 
     display: inline-flex;
     justify-content: center;
     align-items: center;
+
+    &.hasLetter{
+        border-color: grey;
+    }
+
+    &.hit{
+        background-color: #4cb050;
+    }
+
+    //&.miss{
+    //    background-color: #b04c4c;
+    //}
+
+    &.inWord{
+        background-color: #b0764c;
+    }
+
 }
+
+
+/*
+hit?: boolean;//for if the letter is in the right position
+    miss?: boolean;//for if the letter is not in the word
+    inWord?: boolean;//for if the letter is in the word but wrong position
+ */

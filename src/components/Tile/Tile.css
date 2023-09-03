@@ -3,10 +3,25 @@
   height: 50px;
   padding: 4px;
   border-radius: 4px;
-  border: 2px solid grey;
+  border: 2px solid #484848;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
+.tile.hasLetter {
+  border-color: grey;
+}
+.tile.hit {
+  background-color: #4cb050;
+}
+.tile.inWord {
+  background-color: #b0764c;
+}
+
+/*
+hit?: boolean;//for if the letter is in the right position
+    miss?: boolean;//for if the letter is not in the word
+    inWord?: boolean;//for if the letter is in the word but wrong position
+ */
 
 /*# sourceMappingURL=Tile.css.map */
