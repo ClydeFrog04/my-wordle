@@ -2,7 +2,7 @@ import "./App.scss";
 import {Route, Routes} from "react-router-dom";
 import {useEffect} from "react";
 import {useDictionary} from "./hooks/useDictionary.ts";
-import World from "./pages/Wordle.tsx";
+import {Wordle} from "./pages/Wordle.tsx";
 
 function App() {
     const TAG = "[App.tsx]";
@@ -31,9 +31,7 @@ function App() {
                     <Route
                         path={"/"}
                         element={
-                            <div>
-                                <World/>
-                            </div>
+                            <Wordle/>
                         }
                     />
                 </Routes>

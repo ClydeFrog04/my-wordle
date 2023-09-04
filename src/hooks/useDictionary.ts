@@ -1,12 +1,16 @@
+//list of words used in wordle can be found here: https://www.wordunscrambler.net/word-list/wordle-word-list
+//todo: add difficulty selector that picks from different word lists :]
 import axios from "axios";
 import {useEffect, useState} from "react";
 import words from "../res/fiveLetterWordsNoSpecial.json";
+import wordsToPickFrom from "../res/worldeList.json";
 import wordle from "../pages/Wordle.tsx";
 
 export const useDictionary = () => {
     const TAG = "[useDictionary.ts]";
 
-    const wordsList: string[] = words.words;
+    const wordsList: string[] = wordsToPickFrom.words;
+    const dictionary: string[] = words.words;
     const limit = wordsList.length;
 
     useEffect(() => {
@@ -20,7 +24,8 @@ export const useDictionary = () => {
     }
 
     const doesWordExist =  (word: string) => {
-        return wordsList.includes(word);
+        // return wordsList.includes(word);
+        return dictionary.includes(word);
     }
 
     return {

@@ -3,12 +3,14 @@ import "./Wordle.css";
 import {useDictionary} from "../hooks/useDictionary.ts";
 import Tile from "../components/Tile/Tile.tsx";
 import useKeypresses from "../hooks/useKeypresses.ts";
+import {ToastContainer, toast, Slide, Zoom} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface WordleProps {
 
 }
 
-const Wordle = (props: WordleProps) => {
+export const Wordle = (props: WordleProps) => {
     const TAG = "[Wordle.tsx]";
     const maxRows = 6;
     const maxWordLength = 5;
@@ -40,6 +42,10 @@ const Wordle = (props: WordleProps) => {
                         console.log(TAG, "row found was:", rows[currentPosition]);
                         if(newGuess === word){
                             console.log(TAG, "you win!");
+                            toast("You won!", {
+                                toastId: "youWin"
+                            });
+                            setIsGameWon(true);
                         }
                         // const newRows = [...rows];
                         // newRows[currentPosition] = drawRow(newGuess, 'x', true);
@@ -47,8 +53,10 @@ const Wordle = (props: WordleProps) => {
                     }
                     setCurrentPosition((curPos) => {
                         newPosition = curPos + 1;
-                        console.log(TAG, "you lost: new pos:", newPosition, maxRows);
                         if(newPosition > maxRows - 1){//- 1 since newPosition tracks array value and arrays are zero based
+                            toast(`You lost! The word was ${word}`, {
+                                toastId: "youLost"
+                            });
                             setIsGameLost(true);
                         }
                         return newPosition;
@@ -58,6 +66,11 @@ const Wordle = (props: WordleProps) => {
                     // drawRow(newGuess, "a");
                 } else {
                     console.log("not a valid word");
+                    // toast.clearWaitingQueue();
+                    // toast.dismiss();
+                    toast("Word does not exist!", {
+                        toastId: "doesNotExist"
+                    });
                 }
                 break;
             case "Backspace":
@@ -176,6 +189,7 @@ const Wordle = (props: WordleProps) => {
 
     return (
         <div className="wordle">
+            <ToastContainer position={"top-center"} autoClose={1000} hideProgressBar transition={Zoom} limit={1}/>
             {/*{word?.split("").map( (letter, index) => {*/}
             {/*    return <Tile letter={letter} key={index}/>*/}
             {/*})}*/}
@@ -184,4 +198,3 @@ const Wordle = (props: WordleProps) => {
     );
 };
 
-export default Wordle;
