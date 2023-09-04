@@ -10,7 +10,7 @@ interface WordleProps {
 
 }
 
-const Wordle = (props: WordleProps) => {
+export const Wordle = (props: WordleProps) => {
     const TAG = "[Wordle.tsx]";
     const maxRows = 6;
     const maxWordLength = 5;
@@ -198,4 +198,3 @@ const Wordle = (props: WordleProps) => {
     );
 };
 
-export default Wordle;
