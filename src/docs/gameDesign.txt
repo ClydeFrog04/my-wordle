@@ -1,0 +1,8 @@
+things we need:
+
+-a random word for the player to guess
+-a current guess from the user
+-a tile that can be colored based on letter score
+-a current row for the player to play on
+-a board that contains the rows (?)
+-key handler
