@@ -31,9 +31,7 @@ function App() {
                     <Route
                         path={"/"}
                         element={
-                            <div>
-                                <World/>
-                            </div>
+                            <World/>
                         }
                     />
                 </Routes>
