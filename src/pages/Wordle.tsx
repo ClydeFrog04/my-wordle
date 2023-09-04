@@ -82,6 +82,7 @@ export const Wordle = (props: WordleProps) => {
                 }
                 break;
             case "Backspace":
+                toast.dismiss();
                     newGuess = newGuess.slice(0, newGuess.length - 1);
                     newGuess = newGuess.padEnd(maxWordLength, " ");
                     setNewGuess(newGuess);
