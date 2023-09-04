@@ -1,5 +1,9 @@
 .wordle {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 .wordle .board {
   display: flex;
@@ -13,6 +17,11 @@
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+}
+.wordle .Toastify__toast-container--top-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=Wordle.css.map */

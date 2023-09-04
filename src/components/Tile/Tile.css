@@ -4,12 +4,15 @@
   padding: 4px;
   border-radius: 4px;
   border: 2px solid #484848;
+  transition: background-color 0.5s ease-in;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 .tile.hasLetter {
   border-color: grey;
+  animation: scaleUpDown 0.05s linear alternate;
+  animation-iteration-count: 2;
 }
 .tile.hit {
   background-color: #4cb050;
@@ -23,5 +26,13 @@ hit?: boolean;//for if the letter is in the right position
     miss?: boolean;//for if the letter is not in the word
     inWord?: boolean;//for if the letter is in the word but wrong position
  */
+@keyframes scaleUpDown {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
 
 /*# sourceMappingURL=Tile.css.map */
