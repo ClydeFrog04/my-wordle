@@ -29,6 +29,7 @@ export const Wordle = (props: WordleProps) => {
 
 
     useKeypresses([..."qwertyuiopasdfghjklzxcvbnm".split(""), "Enter", "Backspace"], (e) => {
+        if(!canPlay()) return;
         // useKeypresses("qwertyuiopasdfghjklzxcvbnm".split(""),  () => {
         //     console.log("yayayaya".padEnd(maxWordLength, " "));
         console.log(TAG, "curr position: ", currentPosition);
@@ -68,21 +69,26 @@ export const Wordle = (props: WordleProps) => {
                     console.log("not a valid word");
                     // toast.clearWaitingQueue();
                     // toast.dismiss();
-                    toast("Word does not exist!", {
-                        toastId: "doesNotExist"
-                    });
+                    if(newGuess.length < maxWordLength){
+                        toast("Word is too short!", {
+                            toastId: "wordTooShort"
+                        });
+                    } else {
+                        toast("Word does not exist!", {
+                            toastId: "doesNotExist"
+                        });
+                    }
+
                 }
                 break;
             case "Backspace":
-                if(canPlay()){
                     newGuess = newGuess.slice(0, newGuess.length - 1);
                     newGuess = newGuess.padEnd(maxWordLength, " ");
                     setNewGuess(newGuess);
-                }
                 break;
             default:
                 // console.log(TAG, "default called", newGuess.length);
-                if (newGuess.length < maxWordLength && canPlay()) {
+                if (newGuess.length < maxWordLength) {
                     newGuess = (newGuess + e.key).padEnd(maxWordLength, " ");
                     console.log(TAG, "adding to new guess:", newGuess);
                     setNewGuess(newGuess);
@@ -145,7 +151,6 @@ export const Wordle = (props: WordleProps) => {
                         highLightType = "miss";
                     } else {
 
-
                         const val = lettersMap.get(letter);
                         console.log("letter val found: ", val);
                         if (val !== undefined && val !== 0) {
@@ -186,6 +191,26 @@ export const Wordle = (props: WordleProps) => {
         );
     }
 
+    function resetGame() {
+        console.log(TAG, "resetting game", currentGuess);
+        const wordPicked = getWord();
+        setWord(wordPicked);
+        console.log(TAG, "wordPicked", wordPicked);
+        const newTries = Array(maxRows).fill("     ");
+        // newTries[2] = "hello";
+        setTries(newTries);
+        setCurrentGuess("");
+        setCurrentPosition(0);
+        setIsGameWon(false);
+        setIsGameLost(false);
+
+        const triesMap = newTries.map((guess, index) => {
+            return drawRow(guess, index, index < currentPosition);//index < currPos scores all previous guesses :]
+        });
+
+        setRows(() => triesMap);
+    }
+
 
     return (
         <div className="wordle">
@@ -194,6 +219,12 @@ export const Wordle = (props: WordleProps) => {
             {/*    return <Tile letter={letter} key={index}/>*/}
             {/*})}*/}
             {Board()}
+            {!canPlay() &&
+                <>
+                    <div>{isGameWon ? "you win!" : "you lost!"}</div>
+                    <button onClick={resetGame}>Play again!</button>
+                </>
+            }
         </div>
     );
 };
